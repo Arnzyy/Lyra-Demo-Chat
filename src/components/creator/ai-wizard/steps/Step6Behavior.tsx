@@ -33,10 +33,10 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Topics She Loves */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Topics She LOVES Talking About 💕
         </label>
         <p className="text-xs text-gray-500 mb-3">
@@ -47,10 +47,10 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
             <button
               key={topic}
               onClick={() => toggleTopicLoves(topic)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+              className={`px-3 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all touch-manipulation min-h-[44px] ${
                 personality.topics_loves.includes(topic)
                   ? 'bg-green-500/30 text-green-300 border border-green-500/50'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-transparent'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 active:bg-white/15 border border-transparent'
               }`}
             >
               ❤️ {topic}
@@ -61,7 +61,7 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
 
       {/* Topics She Avoids */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Topics She Avoids 🚫
         </label>
         <p className="text-xs text-gray-500 mb-3">
@@ -72,10 +72,10 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
             <button
               key={topic}
               onClick={() => toggleTopicAvoids(topic)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+              className={`px-3 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all touch-manipulation min-h-[44px] ${
                 personality.topics_avoids.includes(topic)
                   ? 'bg-red-500/30 text-red-300 border border-red-500/50'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-transparent'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 active:bg-white/15 border border-transparent'
               }`}
             >
               🚫 {topic}
@@ -86,23 +86,23 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
 
       {/* When Complimented */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           When Someone Compliments Her
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
           {WHEN_COMPLIMENTED.map((response) => (
             <button
               key={response.id}
               onClick={() => onChange({ when_complimented: response.id as AIPersonalityFull['when_complimented'] })}
-              className={`p-4 rounded-xl border text-left transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-left transition-all touch-manipulation min-h-[80px] ${
                 personality.when_complimented === response.id
                   ? 'bg-purple-500/20 border-purple-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">{response.icon}</span>
-                <span className="font-medium">{response.label}</span>
+                <span className="text-lg sm:text-xl">{response.icon}</span>
+                <span className="text-sm sm:text-base font-medium">{response.label}</span>
               </div>
               <div className="text-xs text-gray-500 italic">{response.description}</div>
             </button>
@@ -112,26 +112,26 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
 
       {/* When Things Get Heated */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           When Things Get Heated 🔥
         </label>
         <p className="text-xs text-gray-500 mb-3">
           How does she respond when the conversation gets spicy?
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
           {WHEN_HEATED.map((response) => (
             <button
               key={response.id}
               onClick={() => onChange({ when_heated: response.id as AIPersonalityFull['when_heated'] })}
-              className={`p-4 rounded-xl border text-left transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-left transition-all touch-manipulation min-h-[80px] ${
                 personality.when_heated === response.id
                   ? 'bg-gradient-to-r from-pink-500/20 to-red-500/20 border-pink-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">{response.icon}</span>
-                <span className="font-medium">{response.label}</span>
+                <span className="text-lg sm:text-xl">{response.icon}</span>
+                <span className="text-sm sm:text-base font-medium">{response.label}</span>
               </div>
               <div className="text-xs text-gray-500">{response.description}</div>
             </button>
@@ -141,7 +141,7 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
 
       {/* Pet Peeves */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Pet Peeves (optional)
         </label>
         <input
@@ -149,7 +149,8 @@ export function Step6Behavior({ personality, onChange }: Step6Props) {
           value={personality.pet_peeves || ''}
           onChange={(e) => onChange({ pet_peeves: e.target.value })}
           placeholder="e.g., One word replies, being ignored, rudeness..."
-          className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 text-base"
+          className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 min-h-[48px]"
+          style={{ fontSize: '16px' }}
         />
         <p className="text-xs text-gray-500 mt-2">
           Things that annoy her or make her lose interest
