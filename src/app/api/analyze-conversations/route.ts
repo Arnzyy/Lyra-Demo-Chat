@@ -24,6 +24,7 @@ ${conversations || 'No text provided. Analyze the images below.'}
 
 Return this exact JSON structure:
 {
+  "personality_traits": ["flirty", "playful", "confident", "teasing", "sweet"],
   "speech_patterns": ["common phrases"],
   "humor_style": "sarcastic|witty|playful|mixed",
   "energy_level": 7,
@@ -32,7 +33,9 @@ Return this exact JSON structure:
   "flirting_intensity": 8,
   "common_phrases": ["phrases she uses"],
   "confidence_score": 4
-}`;
+}
+
+personality_traits should be 3-5 traits from this list: flirty, playful, confident, teasing, sweet, caring, mysterious, bold, submissive, dominant, sarcastic, witty, funny, intelligent, creative, spontaneous, adventurous, romantic, passionate, sensual`;
 
     contentParts.push({
       type: 'text',

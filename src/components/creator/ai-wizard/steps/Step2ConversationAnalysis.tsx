@@ -111,6 +111,7 @@ export function Step2ConversationAnalysis({
 
       // Auto-populate personality fields
       onChange({
+        personality_traits: result.personality_traits || [],
         speech_patterns: result.common_phrases || [],
         energy_level: result.energy_level || 5,
         humor_style: result.humor_style || 'witty',
