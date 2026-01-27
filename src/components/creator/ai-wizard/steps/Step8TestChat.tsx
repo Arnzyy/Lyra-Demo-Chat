@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import type { AIPersonalityFull } from '@/lib/ai/personality/prompt-builder';
+import type { AIPersonalityFull } from '@/lib/ai/personality/types';
 
 interface Message {
   role: 'user' | 'assistant';

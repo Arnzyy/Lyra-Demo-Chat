@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import type { AIPersonalityFull } from '@/lib/ai/personality/prompt-builder';
+import type { AIPersonalityFull } from '@/lib/ai/personality/types';
 
 interface Step2ConversationAnalysisProps {
   personality: AIPersonalityFull;
