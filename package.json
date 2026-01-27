@@ -12,6 +12,7 @@
     "db:reset": "supabase db reset"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
     "@aws-sdk/client-s3": "^3.627.0",
     "@aws-sdk/s3-request-presigner": "^3.627.0",
     "@hookform/resolvers": "^3.9.0",
