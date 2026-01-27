@@ -2,7 +2,7 @@ export interface ChatAccess {
   hasAccess: boolean;
   canSendMessage: boolean;
   reason?: string;
-  messagesRemaining?: number | null;
+  messagesRemaining: number | null;
   unlockOptions: UnlockOption[];
   accessType: 'guest' | 'subscription' | 'paid_session' | 'free' | 'none';
   isLowMessages?: boolean;
