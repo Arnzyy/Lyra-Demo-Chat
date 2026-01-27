@@ -80,22 +80,22 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Vocabulary Level
         </label>
-        <div className="flex items-center gap-4">
-          <span className="text-gray-500 text-sm w-16">Simple</span>
+        <div className="flex items-center gap-2 sm:gap-4">
+          <span className="text-gray-500 text-xs sm:text-sm w-12 sm:w-16">Simple</span>
           <input
             type="range"
             min={1}
             max={10}
             value={personality.vocabulary_level}
             onChange={(e) => onChange({ vocabulary_level: parseInt(e.target.value) })}
-            className="flex-1 accent-purple-500"
+            className="flex-1 h-2 accent-purple-500 touch-manipulation"
           />
-          <span className="text-gray-500 text-sm w-24 text-right">Sophisticated</span>
+          <span className="text-gray-500 text-xs sm:text-sm w-20 sm:w-24 text-right">Sophisticated</span>
         </div>
         <div className="text-center mt-2">
           <span className="text-purple-400 font-medium">
@@ -107,10 +107,10 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Emoji Usage
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
           {[
             { id: 'none', label: 'None', example: 'Hey there' },
             { id: 'minimal', label: 'Minimal', example: 'Hey there 😊' },
@@ -120,13 +120,13 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
             <button
               key={option.id}
               onClick={() => onChange({ emoji_usage: option.id as AIPersonalityFull['emoji_usage'] })}
-              className={`p-4 rounded-xl border text-center transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-center transition-all touch-manipulation min-h-[80px] ${
                 personality.emoji_usage === option.id
                   ? 'bg-purple-500/20 border-purple-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
-              <div className="font-medium mb-1">{option.label}</div>
+              <div className="text-sm sm:text-base font-medium mb-1">{option.label}</div>
               <div className="text-xs text-gray-500">{option.example}</div>
             </button>
           ))}
@@ -134,10 +134,10 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Response Length
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
           {[
             { id: 'short', label: 'Short & Punchy', example: '1-2 sentences' },
             { id: 'medium', label: 'Medium', example: '2-4 sentences' },
@@ -146,13 +146,13 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
             <button
               key={option.id}
               onClick={() => onChange({ response_length: option.id as AIPersonalityFull['response_length'] })}
-              className={`p-4 rounded-xl border text-center transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-center transition-all touch-manipulation min-h-[80px] ${
                 personality.response_length === option.id
                   ? 'bg-purple-500/20 border-purple-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
-              <div className="font-medium mb-1">{option.label}</div>
+              <div className="text-sm sm:text-base font-medium mb-1">{option.label}</div>
               <div className="text-xs text-gray-500">{option.example}</div>
             </button>
           ))}
@@ -163,24 +163,24 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Speech Patterns
         </label>
         <p className="text-xs text-gray-500 mb-3">
           Pick up to 4. Selected: {personality.speech_patterns.length}/4
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
           {SPEECH_PATTERNS.map((pattern) => (
             <button
               key={pattern.id}
               onClick={() => togglePattern(pattern.id)}
-              className={`p-3 rounded-xl border text-left transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-left transition-all touch-manipulation min-h-[72px] ${
                 personality.speech_patterns.includes(pattern.id)
                   ? 'bg-purple-500/20 border-purple-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
-              <div className="font-medium mb-1">{pattern.label}</div>
+              <div className="text-sm sm:text-base font-medium mb-1">{pattern.label}</div>
               <div className="text-xs text-gray-500">{pattern.example}</div>
             </button>
           ))}
@@ -188,7 +188,7 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Accent / Flavor
         </label>
         <div className="flex flex-wrap gap-2">
@@ -196,10 +196,10 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
             <button
               key={accent.id}
               onClick={() => onChange({ accent_flavor: accent.id })}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all touch-manipulation min-h-[44px] ${
                 personality.accent_flavor === accent.id
                   ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 active:bg-white/15'
               }`}
             >
               {accent.label}
@@ -209,7 +209,7 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Signature Phrases (optional)
         </label>
         <input
@@ -217,7 +217,8 @@ export function Step5Voice({ personality, onChange }: Step5Props) {
           value={personality.signature_phrases || ''}
           onChange={(e) => onChange({ signature_phrases: e.target.value })}
           placeholder="e.g., hey baby, mmm, you're so bad, tell me more..."
-          className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 text-base"
+          className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 min-h-[48px]"
+          style={{ fontSize: '16px' }}
         />
         <p className="text-xs text-gray-500 mt-2">
           Phrases she uses often that make her unique
