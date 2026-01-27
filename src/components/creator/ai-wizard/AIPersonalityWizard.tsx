@@ -320,11 +320,11 @@ export function AIPersonalityWizard({
     <div className="min-h-screen bg-black pb-safe">
       {/* Header */}
       <div className="border-b border-white/10 bg-zinc-950 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <h1 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-5">
+          <h1 className="text-lg sm:text-2xl font-bold mb-1">
             AI Model Replica Setup
           </h1>
-          <p className="text-sm sm:text-base text-gray-400">
+          <p className="text-xs sm:text-base text-gray-400">
             Become an AI - chat exactly like you
           </p>
 
@@ -348,55 +348,57 @@ export function AIPersonalityWizard({
       </div>
 
       {/* Progress Steps */}
-      <div className="border-b border-white/10 bg-zinc-950/50 overflow-x-auto sticky top-[73px] sm:top-[89px] z-10 scrollbar-hide">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-center">
-          <div className="flex gap-1.5 sm:gap-2">
-            {WIZARD_STEPS.map((step) => (
-              <button
-                key={step.id}
-                onClick={() => goToStep(step.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all touch-manipulation min-h-[44px] ${
-                  currentStep === step.id
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                    : currentStep > step.id
-                    ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                    : 'bg-white/5 text-gray-400 active:bg-white/10'
-                }`}
-              >
-                <span className="text-base sm:text-lg">{step.icon}</span>
-                <span className="hidden sm:inline whitespace-nowrap">{step.title}</span>
-                <span className="sm:hidden">{step.id}</span>
-              </button>
-            ))}
+      <div className="border-b border-white/10 bg-zinc-950/50 sticky top-[73px] sm:top-[89px] z-10">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 py-2 sm:py-3">
+            <div className="flex gap-1.5 sm:gap-2 justify-start sm:justify-center min-w-max sm:min-w-0">
+              {WIZARD_STEPS.map((step) => (
+                <button
+                  key={step.id}
+                  onClick={() => goToStep(step.id)}
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all touch-manipulation flex-shrink-0 ${
+                    currentStep === step.id
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                      : currentStep > step.id
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                      : 'bg-white/5 text-gray-400 active:bg-white/10'
+                  }`}
+                >
+                  <span className="text-base sm:text-lg">{step.icon}</span>
+                  <span className="hidden sm:inline whitespace-nowrap">{step.title}</span>
+                  <span className="sm:hidden">{step.id}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Current Step Header */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-          <span className="text-2xl sm:text-3xl">{WIZARD_STEPS[currentStep - 1].icon}</span>
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-5">
+        <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5">
+          <span className="text-xl sm:text-3xl flex-shrink-0">{WIZARD_STEPS[currentStep - 1].icon}</span>
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg sm:text-xl font-semibold truncate">
+            <h2 className="text-base sm:text-xl font-semibold truncate">
               {WIZARD_STEPS[currentStep - 1].title}
             </h2>
-            <p className="text-sm sm:text-base text-gray-400 truncate">
+            <p className="text-xs sm:text-base text-gray-400 truncate">
               {WIZARD_STEPS[currentStep - 1].subtitle}
             </p>
           </div>
         </div>
 
         {/* Step Content */}
-        <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 sm:p-6 mb-safe">
+        <div className="bg-zinc-900 border border-white/10 rounded-xl p-3 sm:p-6 mb-safe">
           {renderStep()}
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between items-center mt-4 sm:mt-6 gap-3 sm:gap-4">
+        <div className="flex justify-between items-center mt-3 sm:mt-5 gap-2 sm:gap-4">
           <button
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-4 sm:px-6 py-3 sm:py-3.5 rounded-full font-medium transition-all touch-manipulation min-h-[48px] min-w-[80px] sm:min-w-[100px] ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium transition-all touch-manipulation min-h-[44px] text-sm sm:text-base flex-shrink-0 ${
               currentStep === 1
                 ? 'bg-white/5 text-gray-600 cursor-not-allowed'
                 : 'bg-white/10 text-white active:bg-white/20'
@@ -412,14 +414,14 @@ export function AIPersonalityWizard({
           {currentStep < WIZARD_STEPS.length ? (
             <button
               onClick={nextStep}
-              className="px-4 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-medium active:opacity-90 transition-opacity touch-manipulation min-h-[48px] min-w-[80px] sm:min-w-[100px]"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-medium active:opacity-90 transition-opacity touch-manipulation min-h-[44px] text-sm sm:text-base flex-shrink-0"
             >
               Next
             </button>
           ) : (
             <button
               onClick={() => onComplete(personality)}
-              className="px-4 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full font-medium active:opacity-90 transition-opacity touch-manipulation min-h-[48px]"
+              className="px-4 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full font-medium active:opacity-90 transition-opacity touch-manipulation min-h-[44px] text-sm sm:text-base flex-shrink-0"
             >
               <span className="hidden sm:inline">Complete Demo</span>
               <span className="sm:hidden">Complete</span>
@@ -428,8 +430,8 @@ export function AIPersonalityWizard({
         </div>
 
         {/* Subtle disclaimer */}
-        <div className="mt-4 sm:mt-6 pt-4 border-t border-white/10 text-center">
-          <p className="text-xs text-gray-500 px-2">
+        <div className="mt-3 sm:mt-5 pt-3 sm:pt-4 border-t border-white/10 text-center">
+          <p className="text-xs text-gray-500 px-2 leading-relaxed">
             Your AI follows platform guidelines and won't engage in prohibited content. She's designed for entertainment and connection.
           </p>
         </div>
