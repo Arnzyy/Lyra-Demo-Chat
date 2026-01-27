@@ -26,11 +26,11 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Name & Age */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
             Persona Name *
           </label>
           <input
@@ -38,12 +38,13 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
             value={personality.persona_name}
             onChange={(e) => onChange({ persona_name: e.target.value })}
             placeholder="e.g., Luna, Sofia, Aria..."
-            className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 text-base"
+            className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 min-h-[48px]"
+            style={{ fontSize: '16px' }}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
             Age *
           </label>
           <input
@@ -52,7 +53,8 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
             max={50}
             value={personality.age}
             onChange={(e) => onChange({ age: parseInt(e.target.value) || 18 })}
-            className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white text-base"
+            className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white min-h-[48px]"
+            style={{ fontSize: '16px' }}
           />
           <p className="text-xs text-gray-500 mt-1">Must be 18+</p>
         </div>
@@ -60,7 +62,7 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Height */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Height: {Math.floor(personality.height_cm / 30.48)}&apos;{Math.round((personality.height_cm % 30.48) / 2.54)}&quot; ({personality.height_cm}cm)
         </label>
         <input
@@ -69,9 +71,9 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
           max={185}
           value={personality.height_cm}
           onChange={(e) => onChange({ height_cm: parseInt(e.target.value) })}
-          className="w-full accent-purple-500"
+          className="w-full h-2 accent-purple-500 touch-manipulation"
         />
-        <div className="flex justify-between text-xs text-gray-500 mt-1">
+        <div className="flex justify-between text-xs text-gray-500 mt-2">
           <span>4&apos;11&quot;</span>
           <span>6&apos;1&quot;</span>
         </div>
@@ -79,37 +81,38 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Body Type */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Body Type
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
           {BODY_TYPES.map((type) => (
             <button
               key={type.id}
               onClick={() => onChange({ body_type: type.id as AIPersonalityFull['body_type'] })}
-              className={`p-4 rounded-xl border text-center transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-center transition-all min-h-[80px] touch-manipulation ${
                 personality.body_type === type.id
                   ? 'bg-purple-500/20 border-purple-500 text-white'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 active:bg-white/10'
               }`}
             >
-              <div className="text-2xl mb-1">{type.icon}</div>
-              <div className="text-sm font-medium">{type.label}</div>
+              <div className="text-xl sm:text-2xl mb-1">{type.icon}</div>
+              <div className="text-xs sm:text-sm font-medium">{type.label}</div>
             </button>
           ))}
         </div>
       </div>
 
       {/* Hair */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
             Hair Color
           </label>
           <select
             value={personality.hair_color}
             onChange={(e) => onChange({ hair_color: e.target.value })}
-            className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white text-base"
+            className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white min-h-[48px] touch-manipulation"
+            style={{ fontSize: '16px' }}
           >
             {HAIR_COLORS.map((color) => (
               <option key={color} value={color} className="bg-zinc-900 text-white">
@@ -120,13 +123,14 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
             Hair Style
           </label>
           <select
             value={personality.hair_style}
             onChange={(e) => onChange({ hair_style: e.target.value })}
-            className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white text-base"
+            className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white min-h-[48px] touch-manipulation"
+            style={{ fontSize: '16px' }}
           >
             {HAIR_STYLES.map((style) => (
               <option key={style} value={style} className="bg-zinc-900 text-white">
@@ -139,7 +143,7 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Eyes */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Eye Color
         </label>
         <div className="flex flex-wrap gap-2">
@@ -147,10 +151,10 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
             <button
               key={color}
               onClick={() => onChange({ eye_color: color })}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all min-h-[44px] touch-manipulation ${
                 personality.eye_color === color
                   ? 'bg-purple-500 text-white'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 active:bg-white/15'
               }`}
             >
               {color}
@@ -161,25 +165,25 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Skin Tone */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-3">
           Skin Tone
         </label>
-        <div className="flex gap-4">
+        <div className="grid grid-cols-2 sm:flex sm:gap-3 gap-2">
           {SKIN_TONES.map((tone) => (
             <button
               key={tone.id}
               onClick={() => onChange({ skin_tone: tone.id as AIPersonalityFull['skin_tone'] })}
-              className={`flex flex-col items-center gap-2 p-3 rounded-xl border transition-all ${
+              className={`flex flex-col items-center gap-2 p-3 rounded-xl border transition-all touch-manipulation min-h-[100px] ${
                 personality.skin_tone === tone.id
                   ? 'bg-purple-500/20 border-purple-500'
-                  : 'bg-white/5 border-white/10 hover:border-white/30'
+                  : 'bg-white/5 border-white/10 hover:border-white/30 active:bg-white/10'
               }`}
             >
               <div
-                className="w-10 h-10 rounded-full border-2 border-white/20"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white/20"
                 style={{ backgroundColor: tone.color }}
               />
-              <span className="text-sm">{tone.label}</span>
+              <span className="text-xs sm:text-sm">{tone.label}</span>
             </button>
           ))}
         </div>
@@ -187,7 +191,7 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Style Vibes */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Style Vibes (pick up to 5)
         </label>
         <p className="text-xs text-gray-500 mb-3">
@@ -198,10 +202,10 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
             <button
               key={vibe}
               onClick={() => toggleStyleVibe(vibe)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all min-h-[44px] touch-manipulation ${
                 personality.style_vibes.includes(vibe)
                   ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 active:bg-white/15'
               }`}
             >
               {vibe}
@@ -212,7 +216,7 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
 
       {/* Distinguishing Features */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm sm:text-base font-medium text-gray-300 mb-2">
           Distinguishing Features (optional)
         </label>
         <input
@@ -220,7 +224,8 @@ export function Step1Identity({ personality, onChange }: Step1Props) {
           value={personality.distinguishing_features || ''}
           onChange={(e) => onChange({ distinguishing_features: e.target.value })}
           placeholder="e.g., Small tattoo on wrist, nose piercing, beauty mark..."
-          className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 text-base"
+          className="w-full px-3 sm:px-4 py-3 sm:py-3.5 bg-zinc-800 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 min-h-[48px]"
+          style={{ fontSize: '16px' }}
         />
       </div>
     </div>
