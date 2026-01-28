@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { AIPersonalityFull } from '@/lib/ai/personality/types';
 
 interface Step2ConversationAnalysisProps {
@@ -20,9 +20,39 @@ export function Step2ConversationAnalysis({
 }: Step2ConversationAnalysisProps) {
   const [conversations, setConversations] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysis, setAnalysis] = useState<any>(null);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Check if analysis was already done (reconstruct from personality data)
+  const hasExistingAnalysis = personality.personality_traits.length > 0 &&
+                               personality.speech_patterns.length > 0;
+
+  const [analysis, setAnalysis] = useState<any>(
+    hasExistingAnalysis ? {
+      personality_traits: personality.personality_traits,
+      common_phrases: personality.speech_patterns,
+      humor_style: personality.humor_style,
+      energy_level: personality.energy_level,
+      topics_loves: personality.topics_loves,
+      topics_avoids: personality.topics_avoids,
+      confidence_score: 5 // Default high confidence if data exists
+    } : null
+  );
+
+  // Update analysis if personality changes externally
+  useEffect(() => {
+    if (hasExistingAnalysis && !analysis) {
+      setAnalysis({
+        personality_traits: personality.personality_traits,
+        common_phrases: personality.speech_patterns,
+        humor_style: personality.humor_style,
+        energy_level: personality.energy_level,
+        topics_loves: personality.topics_loves,
+        topics_avoids: personality.topics_avoids,
+        confidence_score: 5
+      });
+    }
+  }, [personality, hasExistingAnalysis, analysis]);
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
