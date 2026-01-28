@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { AIPersonalityFull } from '@/lib/ai/personality/types';
 import {
   SPEECH_PATTERNS,
@@ -12,6 +13,23 @@ interface Step5Props {
 }
 
 export function Step5Voice({ personality, onChange }: Step5Props) {
+  // Cleanup: Remove invalid speech patterns or trim to max 4
+  useEffect(() => {
+    const validPatternIds = SPEECH_PATTERNS.map(p => p.id);
+    const currentPatterns = personality.speech_patterns;
+
+    // Filter out invalid patterns and limit to 4
+    const cleanedPatterns = currentPatterns
+      .filter(p => validPatternIds.includes(p))
+      .slice(0, 4);
+
+    // Only update if something changed
+    if (cleanedPatterns.length !== currentPatterns.length ||
+        !cleanedPatterns.every((p, i) => p === currentPatterns[i])) {
+      onChange({ speech_patterns: cleanedPatterns });
+    }
+  }, []); // Run once on mount
+
   const togglePattern = (patternId: string) => {
     const current = personality.speech_patterns;
     if (current.includes(patternId)) {
