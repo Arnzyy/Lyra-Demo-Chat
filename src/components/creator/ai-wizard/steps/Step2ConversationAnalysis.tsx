@@ -24,13 +24,12 @@ export function Step2ConversationAnalysis({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Check if analysis was already done (reconstruct from personality data)
-  const hasExistingAnalysis = personality.personality_traits.length > 0 &&
-                               personality.speech_patterns.length > 0;
+  const hasExistingAnalysis = personality.personality_traits.length > 0;
 
   const [analysis, setAnalysis] = useState<any>(
     hasExistingAnalysis ? {
       personality_traits: personality.personality_traits,
-      common_phrases: personality.speech_patterns,
+      common_phrases: [], // Will be populated from actual AI analysis
       humor_style: personality.humor_style,
       energy_level: personality.energy_level,
       topics_loves: personality.topics_loves,
@@ -44,7 +43,7 @@ export function Step2ConversationAnalysis({
     if (hasExistingAnalysis && !analysis) {
       setAnalysis({
         personality_traits: personality.personality_traits,
-        common_phrases: personality.speech_patterns,
+        common_phrases: [], // Will be populated from actual AI analysis
         humor_style: personality.humor_style,
         energy_level: personality.energy_level,
         topics_loves: personality.topics_loves,
@@ -140,9 +139,10 @@ export function Step2ConversationAnalysis({
       setAnalysis(result);
 
       // Auto-populate personality fields
+      // Note: speech_patterns are NOT populated from AI analysis because
+      // common_phrases are actual phrases, not pattern IDs
       onChange({
         personality_traits: result.personality_traits || [],
-        speech_patterns: result.common_phrases || [],
         energy_level: result.energy_level || 5,
         humor_style: result.humor_style || 'witty',
         topics_loves: result.topics_loves || [],
