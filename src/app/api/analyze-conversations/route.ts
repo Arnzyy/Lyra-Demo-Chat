@@ -24,9 +24,9 @@ ${conversations || 'No text provided. Analyze the images below.'}
 
 Return this exact JSON structure:
 {
-  "personality_traits": ["flirty", "playful", "confident", "teasing", "sweet"],
+  "personality_traits": ["flirty", "playful", "confident", "sweet", "sassy"],
   "speech_patterns": ["common phrases"],
-  "humor_style": "sarcastic|witty|playful|mixed",
+  "humor_style": "witty|sarcastic|silly|dry|dirty",
   "energy_level": 7,
   "topics_loves": ["topics"],
   "topics_avoids": ["topics"],
@@ -35,7 +35,9 @@ Return this exact JSON structure:
   "confidence_score": 4
 }
 
-personality_traits should be 3-5 traits from this list: flirty, playful, confident, teasing, sweet, caring, mysterious, bold, submissive, dominant, sarcastic, witty, funny, intelligent, creative, spontaneous, adventurous, romantic, passionate, sensual`;
+IMPORTANT: confidence_score must be 1-5 (1=very low confidence, 5=very high confidence)
+
+personality_traits should be 3-5 traits from this EXACT list (use these IDs only): flirty, sweet, sassy, confident, shy, mysterious, playful, intense, nurturing, wild, intellectual, goofy, romantic, dominant, submissive, caring`;
 
     contentParts.push({
       type: 'text',
